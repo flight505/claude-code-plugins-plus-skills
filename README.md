@@ -1,5 +1,6 @@
 # Tons of Skills — Claude Code Plugins Marketplace
 
+[![Release](https://img.shields.io/badge/release-v4.29.0-green)](https://github.com/jeremylongshore/claude-code-plugins-plus-skills/releases/tag/v4.29.0)
 [![CLI](https://img.shields.io/badge/CLI-ccpi-blueviolet?logo=npm)](https://www.npmjs.com/package/@intentsolutionsio/ccpi)
 [![Plugins](https://img.shields.io/badge/plugins-425-blue)](https://tonsofskills.com/explore)
 [![Skills](https://img.shields.io/badge/skills-2%2C810-green)](https://tonsofskills.com/skills)
@@ -15,6 +16,7 @@ ccpi install devops-automation-pack     # Install any plugin
 ```
 
 Or use Claude's built-in command:
+
 ```bash
 /plugin marketplace add jeremylongshore/claude-code-plugins
 ```
@@ -40,6 +42,7 @@ Or use Claude's built-in command:
 ## Quick Start
 
 **Option 1: CLI (Recommended)**
+
 ```bash
 pnpm add -g @intentsolutionsio/ccpi
 ccpi search devops              # Find plugins by keyword
@@ -49,6 +52,7 @@ ccpi update                     # Pull latest versions
 ```
 
 **Option 2: Claude Built-in Commands**
+
 ```bash
 /plugin marketplace add jeremylongshore/claude-code-plugins
 /plugin install devops-automation-pack@claude-code-plugins-plus
@@ -64,29 +68,29 @@ ccpi update                     # Pull latest versions
 
 ### 📦 Live npm Downloads
 
-Across **340 published packages** in the 
+Across **340 published packages** in the
 [claude-code-plugins](https://www.npmjs.com/~jeremylongshore) namespace. Updated daily by GitHub Actions.
 
-| Window | Downloads |
-|--------|----------:|
-| Last 24 hours | 366 |
-| Last 7 days | 3,937 |
-| Last 30 days | 41,975 |
+| Window        | Downloads |
+| ------------- | --------: |
+| Last 24 hours |       366 |
+| Last 7 days   |     3,937 |
+| Last 30 days  |    41,975 |
 
 **Top 10 by last 30 days:**
 
-| # | Package | Last 30d |
-|---|---------|---------:|
-| 1 | [`@intentsolutionsio/ccpi`](https://www.npmjs.com/package/@intentsolutionsio/ccpi) | 339 |
-| 2 | [`@intentsolutionsio/market-price-tracker`](https://www.npmjs.com/package/@intentsolutionsio/market-price-tracker) | 202 |
-| 3 | [`@intentsolutionsio/excel-analyst-pro`](https://www.npmjs.com/package/@intentsolutionsio/excel-analyst-pro) | 181 |
-| 4 | [`@intentsolutionsio/openbb-terminal`](https://www.npmjs.com/package/@intentsolutionsio/openbb-terminal) | 166 |
-| 5 | [`@intentsolutionsio/crypto-portfolio-tracker`](https://www.npmjs.com/package/@intentsolutionsio/crypto-portfolio-tracker) | 161 |
-| 6 | [`@intentsolutionsio/skill-creator`](https://www.npmjs.com/package/@intentsolutionsio/skill-creator) | 155 |
-| 7 | [`@intentsolutionsio/crypto-tax-calculator`](https://www.npmjs.com/package/@intentsolutionsio/crypto-tax-calculator) | 154 |
-| 8 | [`@intentsolutionsio/blockchain-explorer-cli`](https://www.npmjs.com/package/@intentsolutionsio/blockchain-explorer-cli) | 153 |
-| 9 | [`@intentsolutionsio/ml-model-trainer`](https://www.npmjs.com/package/@intentsolutionsio/ml-model-trainer) | 153 |
-| 10 | [`@intentsolutionsio/compliance-checker`](https://www.npmjs.com/package/@intentsolutionsio/compliance-checker) | 152 |
+| #   | Package                                                                                                                    | Last 30d |
+| --- | -------------------------------------------------------------------------------------------------------------------------- | -------: |
+| 1   | [`@intentsolutionsio/ccpi`](https://www.npmjs.com/package/@intentsolutionsio/ccpi)                                         |      339 |
+| 2   | [`@intentsolutionsio/market-price-tracker`](https://www.npmjs.com/package/@intentsolutionsio/market-price-tracker)         |      202 |
+| 3   | [`@intentsolutionsio/excel-analyst-pro`](https://www.npmjs.com/package/@intentsolutionsio/excel-analyst-pro)               |      181 |
+| 4   | [`@intentsolutionsio/openbb-terminal`](https://www.npmjs.com/package/@intentsolutionsio/openbb-terminal)                   |      166 |
+| 5   | [`@intentsolutionsio/crypto-portfolio-tracker`](https://www.npmjs.com/package/@intentsolutionsio/crypto-portfolio-tracker) |      161 |
+| 6   | [`@intentsolutionsio/skill-creator`](https://www.npmjs.com/package/@intentsolutionsio/skill-creator)                       |      155 |
+| 7   | [`@intentsolutionsio/crypto-tax-calculator`](https://www.npmjs.com/package/@intentsolutionsio/crypto-tax-calculator)       |      154 |
+| 8   | [`@intentsolutionsio/blockchain-explorer-cli`](https://www.npmjs.com/package/@intentsolutionsio/blockchain-explorer-cli)   |      153 |
+| 9   | [`@intentsolutionsio/ml-model-trainer`](https://www.npmjs.com/package/@intentsolutionsio/ml-model-trainer)                 |      153 |
+| 10  | [`@intentsolutionsio/compliance-checker`](https://www.npmjs.com/package/@intentsolutionsio/compliance-checker)             |      152 |
 
 <sub>Last refreshed 2026-05-02T04:09:18.799Z.</sub>
 
@@ -142,7 +146,7 @@ Jump to any of the 18 categories below. Plugin counts are catalog totals — aut
 | `feature-engineering-toolkit` | Feature creation, selection, and transformation tools |
 | `hyperparameter-tuner` | Optimize hyperparameters using grid/random/bayesian search |
 | `jeremy-adk-orchestrator` | Production ADK orchestrator for A2A protocol and multi-agent coordination on Vertex AI |
-| `jeremy-adk-software-engineer` | ADK software engineer for creating production-ready agents (placeholder - to be implemented) |
+| `jeremy-adk-software-engineer` | ADK software engineer for creating production-ready Agent Development Kit agents with clean structure, testability, safe tool usage, and… |
 | `jeremy-gcp-starter-examples` | Google Cloud starter kits and example code aggregator with ADK samples |
 | `jeremy-genkit-pro` | Firebase Genkit expert for production-ready AI workflows with RAG and tool calling |
 | `jeremy-google-adk` | Google Agent Development Kit (ADK) starter for building production AI agents — ReAct single-agent or multi-agent orchestration… |
@@ -757,25 +761,28 @@ Generates idempotent Ansible playbooks following infrastructure-as-code best pra
 
 ### The Numbers
 
-| Metric | Count |
-|--------|-------|
-| Total skills | 2,810 |
-| Plugins (marketplace) | 425 |
-| Agents | 200 |
-| Plugin categories | 18 |
-| Contributors | 16 |
+| Metric                | Count |
+| --------------------- | ----- |
+| Total skills          | 2,810 |
+| Plugins (marketplace) | 425   |
+| Agents                | 200   |
+| Plugin categories     | 18    |
+| Contributors          | 16    |
 
 ---
 
 ## Plugin Types
 
 ### AI Instruction Plugins (309 plugins)
+
 Markdown files that guide Claude's behavior through structured instructions, skills, commands, and agents. No external code — everything runs through Claude's built-in capabilities.
 
 ### MCP Server Plugins (10 plugins)
+
 TypeScript applications that run as separate Node.js processes. Claude communicates with them through the Model Context Protocol.
 
 ### SaaS Skill Packs (106 plugins across 22 pack collections)
+
 Pre-built skill collections for specific platforms — Deepgram, LangChain, Linear, Gamma, and others. Each pack includes install/auth, core workflows, debugging, deployment, and advanced pattern skills.
 
 ---
@@ -784,12 +791,12 @@ Pre-built skill collections for specific platforms — Deepgram, LangChain, Line
 
 ### Templates
 
-| Template | Includes | Best For |
-|----------|----------|----------|
-| **minimal-plugin** | plugin.json + README | Simple utilities |
-| **command-plugin** | Slash commands | Custom workflows |
-| **agent-plugin** | Specialized AI agent | Domain expertise |
-| **full-plugin** | Commands + agents + hooks + skills | Complex automation |
+| Template           | Includes                           | Best For           |
+| ------------------ | ---------------------------------- | ------------------ |
+| **minimal-plugin** | plugin.json + README               | Simple utilities   |
+| **command-plugin** | Slash commands                     | Custom workflows   |
+| **agent-plugin**   | Specialized AI agent               | Domain expertise   |
+| **full-plugin**    | Commands + agents + hooks + skills | Complex automation |
 
 All templates live in [`templates/`](templates/).
 
@@ -806,25 +813,25 @@ All templates live in [`templates/`](templates/).
 ```yaml
 ---
 # Recommended (all fields optional per Anthropic spec)
-name: my-skill-name                     # kebab-case, matches folder name
-description: |                          # Include "Use when..." and "Trigger with..."
+name: my-skill-name # kebab-case, matches folder name
+description: | # Include "Use when..." and "Trigger with..."
   Describe what this skill does. Use when building X.
   Trigger with "build X" or "create X workflow".
 allowed-tools: Read, Write, Bash(npm:*) # Comma-separated, scoped Bash recommended
-version: 1.0.0                          # Semver
+version: 1.0.0 # Semver
 author: Your Name <you@example.com>
 license: MIT
 
 # Optional
-model: sonnet                           # Model override (sonnet, haiku, opus)
-context: fork                           # Run in subagent
-agent: Explore                          # Subagent type
-user-invocable: false                   # Hide from / menu
-argument-hint: "<file-path>"            # Autocomplete hint
-hooks: {}                               # Lifecycle hooks
-compatibility: "Node.js >= 18"          # Environment requirements
-compatible-with: claude-code, cursor    # Platform compatibility
-tags: [devops, ci]                      # Discovery tags
+model: sonnet # Model override (sonnet, haiku, opus)
+context: fork # Run in subagent
+agent: Explore # Subagent type
+user-invocable: false # Hide from / menu
+argument-hint: '<file-path>' # Autocomplete hint
+hooks: {} # Lifecycle hooks
+compatibility: 'Node.js >= 18' # Environment requirements
+compatible-with: claude-code, cursor # Platform compatibility
+tags: [devops, ci] # Discovery tags
 ---
 ```
 
@@ -843,6 +850,7 @@ Production agent workflow patterns with empirical verification — guides, diagr
 <td width="50%">
 
 **Guides** (90+ pages)
+
 - [Mental Model (5 min)](workspace/lab/GUIDE-00-START-HERE.md)
 - [Architecture Deep Dive (15 min)](workspace/lab/GUIDE-01-PATTERN-EXPLAINED.md)
 - [Build Your Own (30 min)](workspace/lab/GUIDE-02-BUILDING-YOUR-OWN.md)
@@ -853,11 +861,13 @@ Production agent workflow patterns with empirical verification — guides, diagr
 <td width="50%">
 
 **Interactive Tutorials** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jeremylongshore/claude-code-plugins-plus-skills/blob/main/tutorials/)
+
 - [Skills (5 notebooks)](000-docs/185-MS-INDX-tutorials.md#skills-tutorials-5-notebooks)
 - [Plugins (4 notebooks)](000-docs/185-MS-INDX-tutorials.md#plugins-tutorials-4-notebooks)
 - [Orchestration (2 notebooks)](000-docs/185-MS-INDX-tutorials.md#orchestration-tutorials-2-notebooks)
 
 **Reference Implementation**
+
 - [5-Phase Workflow](workspace/lab/schema-optimization/SKILL.md)
 - [Phase Contracts & Agents](workspace/lab/schema-optimization/agents/)
 - [Verification Scripts](workspace/lab/schema-optimization/scripts/)
@@ -927,21 +937,22 @@ Community contributors make this marketplace better. Newest first.
 <details>
   <summary><strong>Documentation & Playbooks</strong> (click to expand)</summary>
 
-  | Document | Purpose |
-  |----------|---------|
-  | **[User Security Guide](./000-docs/071-DR-GUID-user-security.md)** | How to safely evaluate and install plugins |
-  | **[Code of Conduct](./000-docs/006-BL-POLI-code-of-conduct.md)** | Community standards |
-  | **[Security Policy](./000-docs/008-TQ-SECU-security.md)** | Threat model, vulnerability reporting |
-  | **[Changelog](./000-docs/247-OD-CHNG-changelog.md)** | Release history |
+| Document                                                           | Purpose                                    |
+| ------------------------------------------------------------------ | ------------------------------------------ |
+| **[User Security Guide](./000-docs/071-DR-GUID-user-security.md)** | How to safely evaluate and install plugins |
+| **[Code of Conduct](./000-docs/006-BL-POLI-code-of-conduct.md)**   | Community standards                        |
+| **[Security Policy](./000-docs/008-TQ-SECU-security.md)**          | Threat model, vulnerability reporting      |
+| **[Changelog](./000-docs/247-OD-CHNG-changelog.md)**               | Release history                            |
 
-  **Production Playbooks** (11 guides, ~53,500 words):
-  - [Multi-Agent Rate Limits](000-docs/204-DR-SOPS-01-multi-agent-rate.md)
-  - [Cost Caps & Budgets](000-docs/196-DR-SOPS-02-cost-caps.md)
-  - [MCP Server Reliability](000-docs/198-DR-SOPS-03-mcp-reliability.md)
-  - [Incident Debugging](000-docs/203-DR-SOPS-05-incident-debugging.md)
-  - [Compliance & Audit](000-docs/200-DR-SOPS-07-compliance-audit.md)
-  - [Advanced Tool Use](000-docs/207-DR-SOPS-11-advanced-tool-use.md)
-  - [Full Index](000-docs/206-DR-SOPS-readme.md)
+**Production Playbooks** (11 guides, ~53,500 words):
+
+- [Multi-Agent Rate Limits](000-docs/204-DR-SOPS-01-multi-agent-rate.md)
+- [Cost Caps & Budgets](000-docs/196-DR-SOPS-02-cost-caps.md)
+- [MCP Server Reliability](000-docs/198-DR-SOPS-03-mcp-reliability.md)
+- [Incident Debugging](000-docs/203-DR-SOPS-05-incident-debugging.md)
+- [Compliance & Audit](000-docs/200-DR-SOPS-07-compliance-audit.md)
+- [Advanced Tool Use](000-docs/207-DR-SOPS-11-advanced-tool-use.md)
+- [Full Index](000-docs/206-DR-SOPS-readme.md)
 
 </details>
 
