@@ -1,0 +1,44 @@
+name: 'Warp Terminal'
+base_url: 'https://docs.warp.dev'
+
+discovery:
+  method: sitemap
+  url: 'https://docs.warp.dev/sitemap-pages.xml'
+
+download:
+  rate_limit: 0.2
+  timeout: 30
+  append_md: true
+
+processing:
+  strip_frontmatter: true
+  clean_blank_lines: true
+
+sections:
+  derive_from: url_path
+  descriptions:
+    agents: 'AI-powered terminal agents for command generation and automation'
+    code: 'Code editing, review, and codebase context features'
+    getting-started: 'Installation, setup, keyboard shortcuts, and shell configuration'
+    knowledge-and-collaboration: 'Warp Drive, notebooks, workflows, teams, and sharing'
+    terminal: 'Terminal features: blocks, input, output, tabs, themes, and more'
+
+output:
+  quick_reference:
+    file: quick-reference.md
+    max_chars_per_page: 2500
+    priority_paths:
+      - /getting-started/readme-1
+      - /getting-started/keyboard-shortcuts
+      - /getting-started/supported-shells
+      - /getting-started/migrate-to-warp
+      - /terminal/blocks
+      - /terminal/editor
+      - /terminal/entry
+      - /knowledge-and-collaboration/warp-drive
+
+  section_index:
+    file: section-index.md
+
+  full_docs:
+    file: full-docs.txt

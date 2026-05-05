@@ -1,0 +1,29 @@
+{
+  "description": "Claude Code configuration with automatic validation hooks",
+  "preferences": {
+    "model": "sonnet"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run $CLAUDE_PROJECT_DIR/.claude/hooks/validators/template-validator.py"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run $CLAUDE_PROJECT_DIR/.claude/hooks/validators/ruff-validator.py"
+          }
+        ]
+      }
+    ]
+  }
+}

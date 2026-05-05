@@ -1,0 +1,7 @@
+{
+  "description": "Minimal Claude Code configuration - customize as needed",
+  "hooks": {},
+  "preferences": {
+    "model": "sonnet"
+  }
+}

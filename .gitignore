@@ -120,6 +120,12 @@ marketplace/src/data/cowork-manifest.json
 
 claudes-docs/
 
+# Doc skill reference files (24MB+, generated locally by update scripts)
+skills/21-toolkit/claude-docs-skill/references/
+skills/21-toolkit/openrouter-docs-skill/references/
+skills/21-toolkit/warp-docs-skill/references/
+skills/21-toolkit/gemini-docs-skill/references/
+
 # Dolt database files (added by bd init)
 .dolt/
 *.db

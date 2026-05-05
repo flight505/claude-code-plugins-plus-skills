@@ -1,0 +1,57 @@
+name: 'Gemini API'
+base_url: 'https://ai.google.dev/gemini-api/docs'
+
+discovery:
+  method: llms_txt
+  url: 'https://ai.google.dev/gemini-api/docs/llms.txt'
+  extra_pages:
+    - url: 'https://ai.google.dev/gemini-api/docs/deep-research.md.txt'
+      title: 'Deep Research'
+      description: 'Use Gemini for multi-step research tasks'
+    - url: 'https://ai.google.dev/gemini-api/docs/computer-use.md.txt'
+      title: 'Computer Use'
+      description: 'Control desktop applications with Gemini'
+    - url: 'https://ai.google.dev/gemini-api/docs/file-search.md.txt'
+      title: 'File Search'
+      description: 'Search uploaded files with Gemini'
+    - url: 'https://ai.google.dev/gemini-api/docs/coding-agents.md.txt'
+      title: 'Coding Agents'
+      description: 'Build coding agents with Gemini'
+    - url: 'https://ai.google.dev/gemini-api/docs/media-resolution.md.txt'
+      title: 'Media Resolution'
+      description: 'Control media input resolution and quality'
+    - url: 'https://ai.google.dev/gemini-api/docs/deprecations.md.txt'
+      title: 'Deprecations'
+      description: 'Deprecated models and API versions'
+
+download:
+  rate_limit: 0.1
+  timeout: 30
+  strip_suffix: '.md.txt'
+
+processing:
+  strip_frontmatter: true
+  clean_blank_lines: true
+
+sections:
+  derive_from: null
+
+output:
+  quick_reference:
+    file: quick-reference.md
+    max_chars_per_page: 2500
+    priority_paths:
+      - /quickstart
+      - /models
+      - /text-generation
+      - /function-calling
+      - /structured-output
+      - /live
+      - /pricing
+      - /libraries
+
+  section_index:
+    file: section-index.md
+
+  full_docs:
+    file: full-docs.txt

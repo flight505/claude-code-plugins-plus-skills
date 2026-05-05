@@ -6,6 +6,7 @@ import { listPlugins } from './commands/list.js';
 import { doctorCheck } from './commands/doctor.js';
 import { marketplaceCommand, addMarketplace, removeMarketplace } from './commands/marketplace.js';
 import { validateCommand } from './commands/validate.js';
+import { skillsCommand } from './commands/skills.js';
 import { getVersion } from './utils/version.js';
 import chalk from 'chalk';
 import ora from 'ora';
@@ -162,6 +163,8 @@ export function buildProgram() {
         process.exit(1);
       }
     });
+
+  program.addCommand(skillsCommand);
 
   return program;
 }

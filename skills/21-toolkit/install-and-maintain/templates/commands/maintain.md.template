@@ -1,0 +1,46 @@
+---
+description: Analyze maintenance results and report status
+---
+
+# Maintenance Analysis
+
+Analyze the maintenance hook results and report to the user.
+
+## Workflow
+
+1. Read the maintenance log file at `.claude/hooks/setup.maintenance.log`
+
+2. Analyze what was updated and any failures
+
+3. Write results to `setup_docs/maintenance_results.md`
+
+4. Report to the user
+
+## Report Format
+
+```markdown
+# Maintenance Results - {{PROJECT_NAME}}
+
+**Status**: SUCCESS | PARTIAL | FAILED
+**Timestamp**: {timestamp}
+
+## Updates Performed
+- {list of successful updates}
+
+## Failed Updates (if any)
+- {list of failures with error messages}
+
+## Dependency Changes
+- {summary of what was updated}
+
+## Next Steps
+- {recommended actions}
+```
+
+## Post-Maintenance Checks
+
+After maintenance, consider:
+1. Running tests to verify nothing broke
+2. Checking for breaking changes in updated dependencies
+3. Reviewing changelogs for major updates
+4. Committing lock file changes

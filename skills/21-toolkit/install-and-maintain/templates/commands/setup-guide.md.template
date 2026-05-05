@@ -1,0 +1,88 @@
+---
+description: Interactive guided setup with user questions
+---
+
+# Interactive Setup Guide
+
+Guide the user through setup with interactive questions.
+
+## Workflow
+
+### Step 1: Read Setup Log
+
+Read `.claude/hooks/setup.init.log` to understand what the hook did.
+
+### Step 2: Confirm Results
+
+Use `AskUserQuestion`:
+
+```
+header: "Setup Results"
+question: "The setup hook ran. How would you like to proceed?"
+options:
+  - label: "Show me the results"
+    description: "View what was installed and any errors"
+  - label: "Run additional setup"
+    description: "I need to configure more things"
+  - label: "Setup looks good"
+    description: "Everything worked, I'm done"
+```
+
+### Step 3: Handle Issues (if any failures in log)
+
+If there were failures, ask:
+
+```
+header: "Issues Found"
+question: "Some setup steps failed. How should I handle them?"
+options:
+  - label: "Help me fix them"
+    description: "Diagnose and suggest solutions"
+  - label: "Retry failed steps"
+    description: "Try running the failed commands again"
+  - label: "Skip for now"
+    description: "I'll handle these manually later"
+```
+
+### Step 4: Additional Configuration
+
+```
+header: "Configuration"
+question: "Would you like to configure anything else?"
+multiSelect: true
+options:
+  - label: "Environment variables"
+    description: "Set up .env file or shell exports"
+  - label: "Git hooks"
+    description: "Set up pre-commit or other git hooks"
+  - label: "IDE settings"
+    description: "Configure VS Code or other editor"
+  - label: "Nothing else"
+    description: "Setup is complete"
+```
+
+### Step 5: Write Summary
+
+Write final results to `setup_docs/setup_results.md`
+
+### Step 6: Report
+
+```markdown
+## Setup Complete!
+
+**Project**: {{PROJECT_NAME}}
+**Status**: {final_status}
+
+### What Was Done
+- {list of completed actions}
+
+### Next Steps
+1. Start development: `just dev` (if available)
+2. Run tests: `just test` (if available)
+3. View all commands: `just --list`
+
+### Useful Commands
+- `just setup` - Re-run setup (fast, deterministic)
+- `just maintain` - Update dependencies
+- `just reset` - Clean build artifacts
+```

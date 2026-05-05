@@ -1,6 +1,37 @@
 import * as os from 'os';
 import * as path from 'path';
 import * as fs from 'fs-extra';
+import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export type SkillSurface = 'claude' | 'antigravity' | 'gemini' | 'cursor' | 'project';
+
+const SURFACE_SKILL_DIRS: Record<Exclude<SkillSurface, 'project'>, string> = {
+  claude: path.join(os.homedir(), '.claude', 'skills'),
+  antigravity: path.join(os.homedir(), '.gemini', 'antigravity', 'skills'),
+  gemini: path.join(os.homedir(), '.gemini', 'skills'),
+  cursor: path.join(os.homedir(), '.cursor', 'skills'),
+};
+
+export function getSkillTargetDir(surface: SkillSurface): string {
+  if (surface === 'project') {
+    try {
+      const root = execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim();
+      return path.join(root, '.claude', 'skills');
+    } catch {
+      throw new Error('Not inside a git repository. Use --surface claude for global install.');
+    }
+  }
+  return SURFACE_SKILL_DIRS[surface];
+}
+
+export function getSkillSourceDir(): string {
+  // compiled to dist/utils/paths.js → ../../../../skills/21-toolkit = repo root/skills/21-toolkit
+  return path.resolve(__dirname, '../../../../skills/21-toolkit');
+}
 
 export interface ClaudePaths {
   configDir: string;

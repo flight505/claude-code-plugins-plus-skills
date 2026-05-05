@@ -1,0 +1,55 @@
+---
+description: Analyze setup results and report status
+argument-hint: [interactive]
+---
+
+# Setup Analysis
+
+Analyze the setup hook results and report to the user.
+
+## Variables
+
+MODE: $1 (optional - if "true", run interactive mode via /setup-guide)
+
+## Workflow
+
+1. If MODE is "true", execute `/setup-guide` instead and stop here
+
+2. Read the setup log file at `.claude/hooks/setup.init.log`
+
+3. Analyze what succeeded and what failed
+
+4. Write results to `setup_docs/setup_results.md`
+
+5. Report to the user
+
+## Report Format
+
+```markdown
+# Setup Results - {{PROJECT_NAME}}
+
+**Status**: SUCCESS | PARTIAL | FAILED
+**Timestamp**: {timestamp}
+
+## Completed Actions
+- {list of successful actions}
+
+## Failed Actions (if any)
+- {list of failures with error messages}
+
+## Environment
+- Workspace root: {path}
+- Type: {workspace_type}
+- Stack: {detected_stacks}
+
+## Next Steps
+- {recommended actions}
+```
+
+## Error Diagnosis
+
+If there are failures:
+1. Check if required tools are installed (uv, pnpm, cargo, etc.)
+2. Check for permission issues
+3. Check for network issues (dependency downloads)
+4. Suggest specific fixes based on error messages
