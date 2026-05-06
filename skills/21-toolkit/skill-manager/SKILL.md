@@ -130,6 +130,6 @@ ccpi skills remove <skill-name> --surface project
 ## Tutorials
 
 ```bash
-ccpi tutorials          # list 11 tutorial notebooks
-ccpi tutorials open 7   # open "What is a Skill?" in Jupyter
+ccpi tutorials      # list 11 tutorial notebooks
+ccpi tutorials 7    # open "What is a Skill?" in Jupyter
 ```
