@@ -1,11 +1,3 @@
-// Root ESLint flat config (ESLint 9).
-//
-// Scope: deliberately narrow. We lint root-level scripts (scripts/, root .mjs/.cjs)
-// and packages/cli/src/. Individual workspaces (marketplace, plugins/mcp/*, packages/*)
-// retain their own configs and remain authoritative for their trees.
-//
-// To extend coverage to a new directory, add it to `files` below — but expect
-// pre-existing errors and address them in a separate cleanup PR.
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
@@ -16,35 +8,12 @@ export default [
       '**/node_modules/**',
       'dist/**',
       '**/dist/**',
-      '.astro/**',
-      '**/.astro/**',
       'coverage/**',
       '**/coverage/**',
-      'backups/**',
-      'archive/**',
-      '_PRESERVE_MIGRATION/**',
-      '.firebase/**',
-      'marketplace/**',
-      'packages/analytics-daemon/**',
-      'packages/analytics-dashboard/**',
       'plugins/**',
-      'freshie/**',
-      'functions/**',
-      'workspace/**',
       '.husky/**',
-      '.beads/**',
       '.claude/**',
-      '.venv/**',
-      'redirects/**',
-      'planned-skills/**',
-      'claudes-docs/**',
-      // Out-of-scope subtrees (own configs / large surface area / Python)
-      'packages/plugin-validator/**',
-      'tests/e2e/**',
-      'tests/**/*.py',
-      // Auto-generated catalogs
       '.claude-plugin/marketplace.json',
-      'marketplace/src/data/**/*.json',
     ],
   },
   js.configs.recommended,

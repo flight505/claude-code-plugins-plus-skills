@@ -17,8 +17,6 @@ Tons of Skills — Claude Code plugins marketplace (425 plugins, 2,851 skills, 1
 - `packages/cli` - `ccpi` CLI (local fork — **not published to npm**; installed as a symlink: `~/.local/bin/ccpi → packages/cli/dist/index.js`)
 - `packages/analytics-*` - Analytics daemon and dashboard
 
-> **Session protocol lives in `AGENTS.md`, not here.** Post-compaction recovery (`bd ready`), the mandatory end-of-session push checklist ("Landing the Plane"), and the beads workflow are all in `AGENTS.md`. Read it before starting work — those rules are load-bearing and intentionally not duplicated below.
-
 **Package manager policy (CI-enforced by `scripts/check-package-manager.mjs`):**
 
 - `pnpm` everywhere at root
@@ -494,17 +492,6 @@ python3 freshie/scripts/batch-remediate.py --all --execute
 | `content_signals`            | Word count, code blocks, placeholder density      |
 | `plugins`, `skills`, `packs` | Core entity inventory (versioned by run_id)       |
 | `discovery_runs`             | Run history with timestamps and commit hashes     |
-
-## Task Tracking (Beads)
-
-See `AGENTS.md` for full protocol — including the mandatory post-compaction `bd ready` recovery step and "Landing the Plane" end-of-session push checklist. Quick reference:
-
-```bash
-bd sync && bd ready                        # Session start: find work
-bd update <id> --status in_progress        # Claim task BEFORE starting
-bd close <id> --reason "..."               # Complete with evidence
-bd sync && git push                        # Session end: MANDATORY
-```
 
 ## Legacy / Ancillary Files at Root
 
