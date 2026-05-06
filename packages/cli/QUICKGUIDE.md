@@ -2,11 +2,21 @@
 
 `ccpi` manages **plugins** (full Claude Code extensions) and **skills** (auto-activating AI instructions) from [tonsofskills.com](https://tonsofskills.com).
 
-## Install
+## Install (local fork)
+
+This is a local fork — `ccpi` is **not on npm**. It runs directly from the built source via a symlink.
 
 ```bash
-npm install -g @intentsolutionsio/ccpi   # or: bunx / pnpx / npx (no install needed)
+# One-time setup: build and symlink into PATH
+cd /path/to/claude-code-plugins-plus-skills
+cd packages/cli && pnpm build
+ln -sf "$(pwd)/dist/index.js" ~/.local/bin/ccpi   # or any dir on your PATH
+
+# After editing packages/cli/src/, rebuild to pick up changes
+cd packages/cli && pnpm build
 ```
+
+The symlink at `~/.local/bin/ccpi` resolves to `packages/cli/dist/index.js` — rebuilding is enough, no re-linking needed.
 
 ## Concepts
 

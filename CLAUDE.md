@@ -14,7 +14,7 @@ Tons of Skills — Claude Code plugins marketplace (425 plugins, 2,851 skills, 1
 - `plugins/mcp/*` - MCP server plugins (TypeScript, ~2%)
 - `plugins/saas-packs/*-pack` - SaaS skill packs (pnpm workspace members)
 - `marketplace/` - Astro 5 website (**uses npm, not pnpm** - CI enforced)
-- `packages/cli` - `ccpi` CLI (`@intentsolutionsio/ccpi` on npm)
+- `packages/cli` - `ccpi` CLI (local fork — **not published to npm**; installed as a symlink: `~/.local/bin/ccpi → packages/cli/dist/index.js`)
 - `packages/analytics-*` - Analytics daemon and dashboard
 
 > **Session protocol lives in `AGENTS.md`, not here.** Post-compaction recovery (`bd ready`), the mandatory end-of-session push checklist ("Landing the Plane"), and the beads workflow are all in `AGENTS.md`. Read it before starting work — those rules are load-bearing and intentionally not duplicated below.
@@ -59,8 +59,10 @@ python3 freshie/scripts/rebuild-inventory.py --dry-run    # Preview without writ
 python3 freshie/scripts/batch-remediate.py --dry-run      # Preview compliance fixes
 python3 freshie/scripts/batch-remediate.py --all --execute  # Apply all auto-fixes
 
-# CLI package
-cd packages/cli && pnpm test -- --grep "pattern"  # Run single test
+# CLI package (local fork — NOT on npm; symlinked at ~/.local/bin/ccpi → dist/index.js)
+# After ANY change to packages/cli/src/, rebuild so the symlink picks it up:
+cd packages/cli && pnpm build                        # rebuild dist/
+cd packages/cli && pnpm test -- --grep "pattern"     # run a single test
 cd packages/cli && pnpm build && node dist/index.js validate --strict  # ccpi validate
 
 # Plugin dev mode — symlink local plugin into Claude Code (live reload, no reinstall needed)
