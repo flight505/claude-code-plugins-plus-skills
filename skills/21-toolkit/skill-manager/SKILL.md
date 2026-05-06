@@ -1,145 +1,135 @@
 ---
 name: skill-manager
-description: Install, remove, and manage Claude Code skills dynamically with hot-reload. Use when the user wants to add or remove skills, list available or installed skills, check the skill catalog, or troubleshoot skill installation.
+description: Install, remove, and manage Claude Code skills dynamically with hot-reload. Use when the user wants to add or remove skills, list available or installed skills, check the skill catalog, search for skills, or troubleshoot skill installation. Covers all 519 skills across 21 categories.
+allowed-tools: Bash, Read
+version: 2.0.0
+author: Intent Solutions IO <jeremy@intentsolutions.io>
+license: MIT
+compatibility: Designed for Claude Code
+tags: [skills, installation, management, catalog]
 ---
 
 # Skill Manager
 
-Manage Claude Code skills dynamically without restarting. Leverages Claude Code 2.1.0+ hot-reload feature for immediate skill availability.
+Manage Claude Code skills dynamically without restarting. Supports all 519 skills across 21 categories from the claude-code-plugins-plus-skills catalog.
 
-## Path Resolution
+## Live Skill Catalog
 
-Skills are **symlinked** into projects from the toolkit source at `<workspace>/.claude/skills/`.
+!`ccpi skills list --json 2>/dev/null | python3 -c "import json,sys; skills=json.load(sys.stdin); cats={}; [cats.setdefault(s['category'],[]).append(s['name']) for s in skills]; [print(f'{cat}: {len(names)} skills ({\"installed\" if any(s[\"installed\"] for s in skills if s[\"category\"]==cat) else \"none installed\"})') for cat,names in sorted(cats.items())]" 2>/dev/null || echo "ccpi not available — run from the claude-code-plugins-plus-skills repo"`
 
-```bash
-WORKSPACE_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
-SKILLS_DIR="$WORKSPACE_ROOT/.claude/skills"
-```
+## Platform Surfaces
 
-Only 2 global skills (install-and-maintain, install-toolkit-skills) live at `~/.claude/skills/`. All others are symlinked project-locally.
+| Surface       | Path                            | Scope                 |
+| ------------- | ------------------------------- | --------------------- |
+| `claude`      | `~/.claude/skills/`             | Global (all projects) |
+| `project`     | `<git-root>/.claude/skills/`    | Current project only  |
+| `antigravity` | `~/.gemini/antigravity/skills/` | Antigravity AI        |
+| `gemini`      | `~/.gemini/skills/`             | Gemini CLI            |
+| `cursor`      | `~/.cursor/skills/`             | Cursor IDE            |
 
 ## When to Use
 
 Use this skill when the user wants to:
 
-- Install a new skill from the catalog
+- Install a skill from the 519-skill catalog
 - Remove an installed skill
-- List available skills in the catalog
-- List currently installed skills
-- Check if a skill is installed
+- List available or installed skills
+- Search for skills matching a topic
+- Check if a specific skill is installed
 
-## How It Works
+## Proactive Skill Suggestions
 
-Skills are **symlinked** from the toolkit source to `<workspace>/.claude/skills/`. This avoids duplicating large reference files (doc skills are 24MB+). Claude Code 2.1.0+ automatically detects new skills without restart — they're immediately available in the current session. Updates to the toolkit source propagate to all linked projects instantly.
+When working on a project, if the user's request matches an uninstalled skill's description from the catalog above:
+
+1. Inform the user: _"The `<skill-name>` skill covers this — want me to install it?"_
+2. If yes, install with: `ccpi skills install <skill-name> --surface project`
+3. Confirm: "✓ installed and immediately available via hot-reload"
+
+**Examples of proactive suggestions:**
+
+- User asks about Kubernetes → suggest `kubernetes-architect` (if in catalog)
+- User asks about security scanning → suggest `code-injection-detector`, `dependency-vulnerability-checker`
+- User asks about AWS → suggest skills from `13-aws-skills` category
 
 ## Workflow
 
+### Search for Skills
+
+```bash
+ccpi search <query>
+```
+
+Shows matching skills (with category) and plugins. Offers interactive install prompt.
+
 ### List Available Skills
 
-1. Read the catalog: `${CLAUDE_SKILL_DIR}/../catalog.json`
-2. Display available skills with:
-   - Name
-   - Description
-   - Version
-   - Category/tags
-   - Installation status (installed/not installed)
+```bash
+ccpi skills list                          # all 519 skills, grouped by category
+ccpi skills list --category security      # filter to security categories
+ccpi skills list --surface project        # check what's installed in current project
+ccpi skills list --json                   # machine-readable (for scripting)
+```
 
 ### Install a Skill
 
-1. Check if skill exists in catalog
-2. **Check if already installed** — look for `$SKILLS_DIR/<skill-name>/SKILL.md`. If it exists, tell the user it's already installed. Don't run the install script unless the user wants to reinstall.
-3. **Preferred method** — use `ln -sfn` directly (no interactive prompts):
-   ```bash
-   TOOLKIT_DIR="$HOME/Projects/Dev_projects/Claude_SDK/claude-toolkit/skills"
-   ln -sfn "$TOOLKIT_DIR/<skill-name>" "$SKILLS_DIR/<skill-name>"
-   ```
-4. **Alternative** — use the install script with `--force` for non-interactive reinstalls:
-   ```bash
-   python "${CLAUDE_SKILL_DIR}/scripts/install-skill.py" --force <skill-name>
-   ```
-5. Confirm installation successful
-6. Inform user the skill is immediately available (no restart needed)
+```bash
+# Project-local (recommended — scoped to current git repo)
+ccpi skills install <skill-name> --surface project
+
+# Global (available in every project)
+ccpi skills install <skill-name> --surface claude
+
+# Install all skills in a category
+ccpi skills install --category security --surface project
+
+# Install all 519 skills
+ccpi skills install --all --surface project
+```
+
+Check installation status first:
+
+```bash
+WORKSPACE_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+ls "$WORKSPACE_ROOT/.claude/skills/" 2>/dev/null | sort
+```
 
 ### Remove a Skill
 
-1. Check if skill is installed (symlink or directory) at `$SKILLS_DIR/<skill-name>`
-2. Confirm with user before removal
-3. Remove the symlink: `rm "$SKILLS_DIR/<skill-name>"` (only removes the link, not the source)
-4. Confirm removal successful
-
-### Check Installation Status
-
-1. Check if directory exists: `$SKILLS_DIR/<skill-name>/`
-2. Verify SKILL.md exists in the directory
-3. Report status to user
+```bash
+ccpi skills remove <skill-name> --surface project
+```
 
 ## Important Notes
 
 - **Hot-reload**: Installed skills are immediately available without restarting Claude Code
+- **Symlinks**: Skills are symlinked from the repo source — updates propagate instantly
+- **Source**: All 519 skills live in `skills/<category>/` in this repo
 - **Safety**: Always confirm before removing skills
-- **Local source**: All skills in this toolkit are local (in claude-toolkit/skills/)
-- **Required skill**: skill-manager itself should not be removed (marked as required in catalog)
 
 ## Examples
 
 **User:** "List available skills"
-→ Read catalog.json
-→ Check which are installed
-→ Display formatted list
+→ Run `ccpi skills list --surface project` → display grouped output
 
 **User:** "Install hooks-mastery skill"
-→ Verify in catalog
-→ Run install script
-→ Confirm: "✓ hooks-mastery symlinked to .claude/skills/ — ready to use!"
+→ `ccpi skills install hooks-mastery --surface project`
+→ "✓ hooks-mastery installed → .claude/skills/ — ready to use!"
+
+**User:** "What security skills are available?"
+→ `ccpi skills list --category security` → show 50 security skills
+→ Ask which to install
 
 **User:** "Remove project-bootstrapper"
-→ Confirm: "Are you sure you want to remove project-bootstrapper?"
-→ User confirms
-→ Remove symlink: `rm "$SKILLS_DIR/project-bootstrapper"`
-→ Confirm: "✓ project-bootstrapper removed (symlink only, source intact)"
+→ Confirm → `ccpi skills remove project-bootstrapper --surface project`
+→ "✓ project-bootstrapper removed (symlink only, source intact)"
 
-## Files in This Skill
+**User:** "Is there a skill for Kubernetes?"
+→ `ccpi search kubernetes` → show matches
+→ Offer to install
 
-- `SKILL.md` (this file) - Skill instructions
-- `scripts/install-skill.py` - Python script to install skills
-- `../catalog.json` - Skill catalog (one level up)
-
-## Installation Script Usage
-
-**Preferred: Direct symlink** (simplest, no dependencies):
+## Tutorials
 
 ```bash
-TOOLKIT_DIR="$HOME/Projects/Dev_projects/Claude_SDK/claude-toolkit/skills"
-ln -sfn "$TOOLKIT_DIR/<skill-name>" "<workspace>/.claude/skills/<skill-name>"
+ccpi tutorials          # list 11 tutorial notebooks
+ccpi tutorials open 7   # open "What is a Skill?" in Jupyter
 ```
-
-**Alternative: Install script** (validates against catalog):
-
-```bash
-python /path/to/skill-manager/scripts/install-skill.py <skill-name>
-python /path/to/skill-manager/scripts/install-skill.py --force <skill-name>  # non-interactive
-```
-
-The script:
-
-1. Reads catalog.json to find the skill
-2. Resolves the source path in the toolkit
-3. Creates a symlink from `<workspace>/.claude/skills/<skill>` → toolkit source
-4. Validates the installation (SKILL.md reachable via symlink)
-5. Outputs success/failure
-
-Use `--force` when running from Claude (avoids interactive y/n prompt that hangs non-interactively).
-
-## Error Handling
-
-- Skill not in catalog → Inform user, list available skills
-- Skill already installed → Inform user, ask if they want to reinstall
-- Required skill removal attempt → Block and explain it's required
-- Installation failure → Show error, suggest troubleshooting
-
-## Reference
-
-**Catalog location:** `${CLAUDE_SKILL_DIR}/../catalog.json`
-**Install script:** `${CLAUDE_SKILL_DIR}/scripts/install-skill.py`
-**Installation target:** `<workspace>/.claude/skills/` (project-local)
-**Claude Code version required:** 2.1.0+ (for hot-reload)

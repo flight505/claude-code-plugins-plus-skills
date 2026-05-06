@@ -19,5 +19,6 @@ describe('ccpi CLI program', () => {
     expect(commandNames).toContain('link');
     expect(commandNames).toContain('unlink');
     expect(commandNames).toContain('links');
+    expect(commandNames).toContain('tutorials');
   });
 });

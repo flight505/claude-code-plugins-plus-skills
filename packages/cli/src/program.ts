@@ -7,6 +7,8 @@ import { doctorCheck } from './commands/doctor.js';
 import { marketplaceCommand, addMarketplace, removeMarketplace } from './commands/marketplace.js';
 import { validateCommand } from './commands/validate.js';
 import { skillsCommand } from './commands/skills.js';
+import { searchCommand } from './commands/search.js';
+import { listTutorials, openTutorial } from './commands/tutorials.js';
 import { linkPlugin, unlinkPlugin, listLinks } from './commands/link.js';
 import { getVersion } from './utils/version.js';
 import chalk from 'chalk';
@@ -92,11 +94,20 @@ export function buildProgram() {
 
   program
     .command('search <query>')
-    .description('Search for plugins in the marketplace')
-    .action(async (query: string) => {
-      console.log(chalk.blue(`Searching marketplace for: ${query}`));
-      console.log(chalk.yellow('🚧 Search functionality coming soon!'));
-      console.log(chalk.gray('Visit https://tonsofskills.com to browse plugins'));
+    .description('Search skills and marketplace plugins')
+    .option('--skills-only', 'Search only skills')
+    .option('--plugins-only', 'Search only marketplace plugins')
+    .option('--surface <surface>', 'Target surface for install', 'project')
+    .option('--json', 'Output results as JSON')
+    .action(async (query: string, options) => {
+      try {
+        await searchCommand(query, options);
+      } catch (error) {
+        console.error(
+          chalk.red(`Error: ${error instanceof Error ? error.message : String(error)}`),
+        );
+        process.exit(1);
+      }
     });
 
   program
@@ -166,6 +177,22 @@ export function buildProgram() {
     });
 
   program.addCommand(skillsCommand);
+
+  program
+    .command('tutorials [number]')
+    .description('List tutorial notebooks, or open one by number')
+    .action((number: string | undefined) => {
+      if (number !== undefined) {
+        const num = parseInt(number, 10);
+        if (isNaN(num)) {
+          console.error(chalk.red(`Invalid tutorial number: "${number}"`));
+          process.exit(1);
+        }
+        openTutorial(num);
+      } else {
+        listTutorials();
+      }
+    });
 
   program
     .command('link [plugin]')

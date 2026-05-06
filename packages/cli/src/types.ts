@@ -57,6 +57,14 @@ export interface CcpiLinksFile {
   links: Record<string, CcpiLink>; // keyed by plugin name
 }
 
+/** A skill entry from the full skills catalog (skills/<category>/<skill-name>/SKILL.md). */
+export interface SkillEntry {
+  name: string;
+  description: string;
+  dir: string;
+  category: string;
+}
+
 /**
  * A pending upgrade record derived by comparing installed vs catalog versions.
  */

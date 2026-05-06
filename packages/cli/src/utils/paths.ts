@@ -30,8 +30,8 @@ export function getSkillTargetDir(surface: SkillSurface): string {
 }
 
 export function getSkillSourceDir(): string {
-  // compiled to dist/utils/paths.js → ../../../../skills/21-toolkit = repo root/skills/21-toolkit
-  return path.resolve(__dirname, '../../../../skills/21-toolkit');
+  // compiled to dist/utils/paths.js → ../../../../skills = repo root/skills
+  return path.resolve(__dirname, '../../../../skills');
 }
 
 export interface ClaudePaths {
