@@ -24,11 +24,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flight505/claude-code-plugins-plus-skills.git"
+    "url": "git+https://github.com/flight505/skill-forge.git"
   },
-  "homepage": "https://github.com/flight505/claude-code-plugins-plus-skills",
+  "homepage": "https://github.com/flight505/skill-forge",
   "bugs": {
-    "url": "https://github.com/flight505/claude-code-plugins-plus-skills/issues"
+    "url": "https://github.com/flight505/skill-forge/issues"
   },
   "engines": {
     "node": ">=20.0.0",
