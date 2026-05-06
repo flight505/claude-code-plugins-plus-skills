@@ -63,6 +63,13 @@ python3 freshie/scripts/batch-remediate.py --all --execute  # Apply all auto-fix
 cd packages/cli && pnpm test -- --grep "pattern"  # Run single test
 cd packages/cli && pnpm build && node dist/index.js validate --strict  # ccpi validate
 
+# Plugin dev mode — symlink local plugin into Claude Code (live reload, no reinstall needed)
+ccpi link <plugin-name>               # catalog lookup from git root → symlink + register
+ccpi link --source ./plugins/cat/name # explicit path (works anywhere on PATH)
+ccpi unlink <plugin-name>             # remove symlink + clean up both JSON registries
+ccpi links                            # list all ccpi-linked plugins with stale-detection
+# After link/unlink: run /reload-plugins in Claude Code to activate changes
+
 # Marketplace website
 cd marketplace/ && npm run dev                    # Dev server at localhost:4321
 cd marketplace/ && npm run build                  # Full build pipeline (see below)
@@ -380,6 +387,7 @@ capabilities: ['capability1', 'capability2']
 3. Add entry to `.claude-plugin/marketplace.extended.json`
 4. `pnpm run sync-marketplace`
 5. `python3 scripts/validate-skills-schema.py --enterprise plugins/[category]/[name]/`
+6. Test locally: `ccpi link <name>` → run `/reload-plugins` in Claude Code → iterate → `ccpi unlink <name>` when done
 
 ## CI Pipeline (validate-plugins.yml)
 

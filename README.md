@@ -51,6 +51,7 @@ ccpi search devops              # Find plugins by keyword
 ccpi install devops-automation-pack
 ccpi list --installed           # See what's installed
 ccpi update                     # Pull latest versions
+ccpi link my-plugin             # Dev mode: symlink local plugin (live reload)
 ```
 
 **Option 2: Claude Built-in Commands**
@@ -809,7 +810,28 @@ All templates live in [`templates/`](templates/).
 2. Edit `.claude-plugin/plugin.json` with your metadata
 3. Add your skill to `skills/my-skill/SKILL.md`
 4. Validate: `ccpi validate ./my-plugin`
-5. Submit a pull request
+5. Test live in Claude Code: `ccpi link my-plugin` → run `/reload-plugins` → iterate → `ccpi unlink my-plugin`
+6. Submit a pull request
+
+### Local Dev Mode (`ccpi link`)
+
+The `ccpi link` command symlinks a local plugin directory directly into Claude Code's plugin cache — no reinstall needed as you edit. Changes are picked up after `/reload-plugins`.
+
+```bash
+# From inside this repo (resolves from .claude-plugin/marketplace.json automatically):
+ccpi link anthropic-pack
+
+# From anywhere with an explicit path:
+ccpi link --source ./plugins/saas-packs/anthropic-pack
+
+# See all linked plugins and their health:
+ccpi links
+
+# Remove a link and clean up:
+ccpi unlink anthropic-pack
+```
+
+State is tracked in `~/.claude/plugins/ccpi-links.json` (separate from Claude Code's `installed_plugins.json`), so `ccpi unlink` reliably removes everything without affecting marketplace-installed plugins.
 
 ### Skill Frontmatter Reference
 

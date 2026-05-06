@@ -1,6 +1,7 @@
 import * as os from 'os';
 import * as path from 'path';
 import * as fs from 'fs-extra';
+import { existsSync } from 'fs';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
@@ -108,4 +109,33 @@ export function getMarketplaceCatalogPath(paths: ClaudePaths): string {
 export async function isMarketplaceInstalled(paths: ClaudePaths): Promise<boolean> {
   const catalogPath = getMarketplaceCatalogPath(paths);
   return await fs.pathExists(catalogPath);
+}
+
+/** Path to ccpi's own symlink registry. */
+export function getCcpiLinksPath(pluginsDir: string): string {
+  return path.join(pluginsDir, 'ccpi-links.json');
+}
+
+/** Absolute path for a versioned plugin in the Claude Code plugin cache. */
+export function getPluginCachePath(
+  pluginsDir: string,
+  marketplaceSlug: string,
+  pluginName: string,
+  version: string,
+): string {
+  return path.join(pluginsDir, 'cache', marketplaceSlug, pluginName, version);
+}
+
+/**
+ * Walk up from startDir until a directory containing `.git/` is found.
+ * Returns null if no git root is found.
+ */
+export function findGitRoot(startDir: string): string | null {
+  let dir = startDir;
+  while (true) {
+    if (existsSync(path.join(dir, '.git'))) return dir;
+    const parent = path.dirname(dir);
+    if (parent === dir) return null;
+    dir = parent;
+  }
 }

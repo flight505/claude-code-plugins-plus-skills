@@ -7,6 +7,7 @@ import { doctorCheck } from './commands/doctor.js';
 import { marketplaceCommand, addMarketplace, removeMarketplace } from './commands/marketplace.js';
 import { validateCommand } from './commands/validate.js';
 import { skillsCommand } from './commands/skills.js';
+import { linkPlugin, unlinkPlugin, listLinks } from './commands/link.js';
 import { getVersion } from './utils/version.js';
 import chalk from 'chalk';
 import ora from 'ora';
@@ -165,6 +166,52 @@ export function buildProgram() {
     });
 
   program.addCommand(skillsCommand);
+
+  program
+    .command('link [plugin]')
+    .description('Symlink a local plugin directory into Claude Code (dev mode, live reload)')
+    .option('--source <path>', 'Explicit path to the local plugin directory')
+    .action(async (plugin: string | undefined, options) => {
+      try {
+        const paths = await detectClaudePaths();
+        await linkPlugin(plugin, paths, options);
+      } catch (error) {
+        console.error(
+          chalk.red(`Error: ${error instanceof Error ? error.message : String(error)}`),
+        );
+        process.exit(1);
+      }
+    });
+
+  program
+    .command('unlink <plugin>')
+    .description('Remove a ccpi-linked plugin and clean up its cache entry')
+    .action(async (plugin: string) => {
+      try {
+        const paths = await detectClaudePaths();
+        await unlinkPlugin(plugin, paths);
+      } catch (error) {
+        console.error(
+          chalk.red(`Error: ${error instanceof Error ? error.message : String(error)}`),
+        );
+        process.exit(1);
+      }
+    });
+
+  program
+    .command('links')
+    .description('List all plugins linked via ccpi link, with health status')
+    .action(async () => {
+      try {
+        const paths = await detectClaudePaths();
+        listLinks(paths);
+      } catch (error) {
+        console.error(
+          chalk.red(`Error: ${error instanceof Error ? error.message : String(error)}`),
+        );
+        process.exit(1);
+      }
+    });
 
   return program;
 }
