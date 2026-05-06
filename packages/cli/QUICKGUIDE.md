@@ -1,87 +1,42 @@
 # ccpi Quick Guide
 
-`ccpi` manages **plugins** (full Claude Code extensions) and **skills** (auto-activating AI instructions) from [tonsofskills.com](https://tonsofskills.com).
+`ccpi` is the local CLI for this fork of the Tons of Skills repo. It manages **skills** (auto-activating AI instructions) and supports **local plugin development** via symlinks. This fork is not published to npm — everything runs from the local build.
 
-## Install (local fork)
-
-This is a local fork — `ccpi` is **not on npm**. It runs directly from the built source via a symlink.
+## Install (one-time)
 
 ```bash
-# One-time setup: build and symlink into PATH
 cd /path/to/claude-code-plugins-plus-skills
 cd packages/cli && pnpm build
 ln -sf "$(pwd)/dist/index.js" ~/.local/bin/ccpi   # or any dir on your PATH
-
-# After editing packages/cli/src/, rebuild to pick up changes
-cd packages/cli && pnpm build
 ```
 
-The symlink at `~/.local/bin/ccpi` resolves to `packages/cli/dist/index.js` — rebuilding is enough, no re-linking needed.
+After editing `packages/cli/src/`, just rebuild — no re-linking needed:
+
+```bash
+cd packages/cli && pnpm build
+```
 
 ## Concepts
 
 | Thing       | What it is                                       | Where it lives                                                  |
 | ----------- | ------------------------------------------------ | --------------------------------------------------------------- |
-| **Plugin**  | Full extension — commands, agents, hooks, skills | `~/.claude/plugins/`                                            |
 | **Skill**   | Single SKILL.md that Claude auto-activates       | `~/.claude/skills/` or `<project>/.claude/skills/`              |
+| **Plugin**  | Full extension — commands, agents, hooks, skills | `~/.claude/plugins/`                                            |
 | **Surface** | Where a skill is installed                       | `claude` (global), `project`, `antigravity`, `gemini`, `cursor` |
-
----
-
-## Plugins
-
-```bash
-# Add the marketplace (one-time, run inside Claude Code)
-/plugin marketplace add jeremylongshore/claude-code-plugins
-
-# Install a plugin
-ccpi install devops-pack
-
-# Install all plugins
-ccpi install --all
-
-# Install a pack or category
-ccpi install --pack devops
-ccpi install --category security
-
-# List installed plugins
-ccpi list
-ccpi list --all          # include available-but-not-installed
-
-# Check for updates
-ccpi upgrade --check
-ccpi upgrade --all
-ccpi upgrade --plugin devops-pack
-
-# Diagnose issues
-ccpi doctor
-ccpi doctor --fix        # auto-fix safe issues
-```
-
-### Local plugin dev mode (symlink, live reload)
-
-```bash
-ccpi link <plugin-name>              # from repo root (catalog lookup)
-ccpi link --source ./path/to/plugin  # explicit path, works anywhere
-ccpi unlink <plugin-name>            # remove symlink + clean registry
-ccpi links                           # list linked plugins + health status
-```
-
-Then run `/reload-plugins` in Claude Code to activate.
 
 ---
 
 ## Skills
 
-519 skills across 21 categories. Installed as symlinks — no restart needed.
+519 skills across 21 categories. Read directly from the local `skills/` directory — no marketplace or npm needed. Installed as symlinks, hot-reloaded by Claude Code.
 
 ### Browse
 
 ```bash
-ccpi skills list                         # all 519, grouped by category
-ccpi skills list --category security     # partial-match category filter
-ccpi skills list --surface project       # check current project installs
-ccpi skills list --json                  # machine-readable (for scripting/DCI)
+ccpi skills list                          # all 519, grouped by category
+ccpi skills list --category security      # partial-match category filter
+ccpi skills list --surface project        # check what's installed in current project
+ccpi skills list --json                   # machine-readable (for scripting/DCI)
 ```
 
 ### Install
@@ -110,23 +65,37 @@ ccpi skills remove hooks-mastery --surface project
 ## Search
 
 ```bash
-ccpi search kubernetes              # skills + plugins, interactive install
-ccpi search "api testing" --skills-only
-ccpi search docker --plugins-only
-ccpi search terraform --json        # machine-readable output
+ccpi search kubernetes                   # skills + upstream plugins, interactive install
+ccpi search "api testing" --skills-only  # skills only (local, fast)
+ccpi search terraform --json             # machine-readable output
 ```
 
-Results are numbered. In a TTY, you'll be prompted to install any skill by number.
+Results are numbered. In a TTY, you'll be prompted to install any matching skill by number.
+
+---
+
+## Local Plugin Development
+
+Use `ccpi link` to symlink a local plugin directory into Claude Code without publishing or reinstalling. Changes in the source directory take effect immediately.
+
+```bash
+ccpi link <plugin-name>               # catalog lookup from repo root
+ccpi link --source ./plugins/cat/name # explicit path (works from anywhere)
+ccpi unlink <plugin-name>             # remove symlink + clean registry
+ccpi links                            # list all linked plugins with health status
+```
+
+Then run `/reload-plugins` in Claude Code to activate.
 
 ---
 
 ## Validate
 
 ```bash
-ccpi validate                        # validate everything in cwd
-ccpi validate --skills               # skills only
-ccpi validate --strict               # exit 1 on warnings (CI mode)
-ccpi validate --json                 # JSON output
+ccpi validate                  # validate everything in cwd
+ccpi validate --skills         # skills only
+ccpi validate --strict         # exit 1 on warnings (CI mode)
+ccpi validate --json           # JSON output
 ```
 
 ---
@@ -134,21 +103,20 @@ ccpi validate --json                 # JSON output
 ## Tutorials
 
 ```bash
-ccpi tutorials                 # list 11 Jupyter notebooks
-ccpi tutorials 7               # open tutorial #7 in Jupyter/browser
+ccpi tutorials          # list 11 Jupyter notebooks
+ccpi tutorials 7        # open tutorial #7 in Jupyter/browser
 ```
 
 Notebooks cover: skills (5), plugins (4), orchestration (2).
 
 ---
 
-## Marketplace
+## Diagnostics
 
 ```bash
-ccpi marketplace                 # check connection status
-ccpi marketplace --verify        # detailed diagnostics
-ccpi marketplace-add             # guided setup
-ccpi marketplace-remove          # guided removal
+ccpi doctor           # check Claude Code installation and plugin health
+ccpi doctor --fix     # auto-fix safe issues (create dirs, refresh catalogs)
+ccpi doctor --json    # JSON output
 ```
 
 ---
@@ -156,8 +124,7 @@ ccpi marketplace-remove          # guided removal
 ## Quick Recipes
 
 ```bash
-# Start fresh on a new project
-ccpi doctor
+# Set up skills for a new project
 ccpi skills install claude-docs-skill hooks-mastery --surface project
 
 # Re-link Antigravity skills after moving the repo
@@ -167,23 +134,24 @@ ccpi skills install --all --surface antigravity
 ccpi skills list --json > /tmp/skills-catalog.json
 
 # Find and install a skill in one step
-ccpi search "docker compose" --surface project
+ccpi search "docker compose"
 
-# Dev-test a local plugin without publishing
-ccpi link --source ./my-new-plugin
-# → iterate → ccpi unlink my-new-plugin when done
+# Dev-test a plugin locally without publishing
+ccpi link --source ./plugins/mycat/my-plugin
+# → edit → Claude Code hot-reloads →
+ccpi unlink my-plugin   # when done
 ```
 
 ---
 
 ## Troubleshooting
 
-| Problem                                  | Fix                                                                                |
-| ---------------------------------------- | ---------------------------------------------------------------------------------- |
-| "Claude Code config directory not found" | Run Claude Code once first, then retry                                             |
-| Skill not found                          | `ccpi skills list` — check exact name; partial category names work in `--category` |
-| Plugin not found                         | `ccpi list --all` or browse tonsofskills.com                                       |
-| Antigravity skills stale after repo move | `ccpi skills install --all --surface antigravity`                                  |
-| Any install weirdness                    | `ccpi doctor --fix`                                                                |
+| Problem                                  | Fix                                                                                  |
+| ---------------------------------------- | ------------------------------------------------------------------------------------ |
+| `ccpi: command not found`                | Check `~/.local/bin` is in PATH; verify symlink with `ls -la ~/.local/bin/ccpi`      |
+| "Claude Code config directory not found" | Run Claude Code once first, then retry                                               |
+| Skill not found                          | `ccpi skills list` — check exact name; partial category names work with `--category` |
+| Antigravity skills stale after repo move | `ccpi skills install --all --surface antigravity`                                    |
+| Any install weirdness                    | `ccpi doctor --fix`                                                                  |
 
-Full docs: `ccpi help <command>` · [tonsofskills.com](https://tonsofskills.com)
+Full command help: `ccpi help <command>`
