@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skill Forge — Claude Code plugin & skill catalog</title>
+    <meta
+      name="description"
+      content="Browse 426 Claude Code plugins. Search by name, paste a prompt to get suggestions, and copy install commands."
+    />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="topnav">
+      <div class="container topnav-row">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">Skill Forge</span>
+        </a>
+        <nav class="topnav-links" aria-label="Primary">
+          <a href="#suggester">Suggest</a>
+          <a href="#catalog">Catalog</a>
+          <a href="#spotlight">Spotlight</a>
+          <a href="#collections">Collections</a>
+        </nav>
+        <div class="topnav-actions">
+          <kbd class="kbd-hint" aria-hidden="true">⌘ K</kbd>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Local · 100% offline · file://</span>
+            <h1 class="display-xl">
+              The catalog for<br />
+              <span class="accent">Claude Code</span> plugins.
+            </h1>
+            <p class="lead">
+              <span data-stat="plugins">—</span> plugins +
+              <span data-stat="skills">—</span> toolkit skills ·
+              <span data-stat="categories">—</span> categories. Type what
+              you're trying to build and the suggester ranks the closest
+              matches. No telemetry, no network calls.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#suggester">Try the suggester</a>
+              <a class="btn btn-secondary" href="#catalog">Browse all</a>
+            </div>
+          </div>
+          <aside class="hero-spotlight" id="spotlight" aria-label="Skill Spotlight">
+            <div class="spotlight-card" data-spotlight-card hidden>
+              <div class="spotlight-head">
+                <span class="status-pill spotlight-pill">Pick of the week</span>
+                <span class="spotlight-week" data-spotlight-week></span>
+              </div>
+              <h2 class="spotlight-title" data-spotlight-title></h2>
+              <p class="spotlight-headline" data-spotlight-headline></p>
+              <p class="spotlight-summary" data-spotlight-summary></p>
+              <div class="spotlight-meta">
+                <span data-spotlight-author></span>
+                <span class="dot">·</span>
+                <span data-spotlight-category></span>
+              </div>
+              <div class="spotlight-actions">
+                <button class="btn btn-secondary" data-spotlight-view>
+                  View in catalog
+                </button>
+                <a
+                  class="btn btn-tertiary"
+                  data-spotlight-link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  hidden
+                  >Source ↗</a
+                >
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="suggester" id="suggester">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Prompt suggester</span>
+            <h2 class="display-md">What are you building?</h2>
+            <p class="muted">
+              Describe a task in plain English. The suggester tokenizes your
+              prompt and ranks plugins by description, keywords, and category
+              overlap.
+            </p>
+          </div>
+
+          <form class="suggest-form" data-suggest-form autocomplete="off">
+            <label class="suggest-input">
+              <svg
+                class="search-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-3.5-3.5" />
+              </svg>
+              <input
+                type="text"
+                id="suggest-q"
+                placeholder="e.g. I need to deploy a Next.js app to Vercel"
+                aria-label="Describe your task"
+              />
+              <span class="kbd-inline" aria-hidden="true">Enter</span>
+            </label>
+            <div class="suggest-chips" data-chip-row>
+              <button type="button" class="chip" data-chip>
+                Deploy a Next.js app
+              </button>
+              <button type="button" class="chip" data-chip>
+                Scrape a website
+              </button>
+              <button type="button" class="chip" data-chip>
+                Fine-tune an LLM
+              </button>
+              <button type="button" class="chip" data-chip>
+                Audit a codebase for security
+              </button>
+              <button type="button" class="chip" data-chip>
+                Generate API docs
+              </button>
+            </div>
+          </form>
+
+          <div class="suggest-results" data-suggest-results aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="catalog" id="catalog">
+        <div class="container">
+          <div class="section-head catalog-head">
+            <div>
+              <span class="eyebrow">Full catalog</span>
+              <h2 class="display-md">Browse every plugin</h2>
+            </div>
+            <label class="filter-input">
+              <svg
+                class="search-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-3.5-3.5" />
+              </svg>
+              <input
+                type="search"
+                id="filter-q"
+                placeholder="Filter by name, keyword, or author"
+                aria-label="Filter catalog"
+              />
+            </label>
+          </div>
+
+          <div class="facets" data-facets role="tablist" aria-label="Categories"></div>
+
+          <div class="catalog-meta">
+            <span data-result-count>—</span>
+            <span class="muted">
+              · Click a card for the install command
+            </span>
+          </div>
+
+          <div class="grid" data-grid></div>
+
+          <div class="empty" data-empty hidden>
+            <p class="muted">No matches. Try a different filter.</p>
+          </div>
+
+          <div class="load-more" data-load-more hidden>
+            <button class="btn btn-secondary" data-load-more-btn>
+              Show more
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="collections" id="collections">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Curated</span>
+            <h2 class="display-md">Bundles for common stacks</h2>
+            <p class="muted">
+              Hand-picked sets of plugins that work well together.
+            </p>
+          </div>
+          <div class="collection-grid" data-collections></div>
+        </div>
+      </section>
+
+      <section class="hall-of-fame">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Past picks</span>
+            <h2 class="display-md">Previously spotlighted</h2>
+          </div>
+          <div class="fame-grid" data-hall-of-fame></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-row">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Skill Forge — local catalog</span>
+        </div>
+        <div class="footer-meta muted">
+          <span data-stat="plugins">—</span> plugins ·
+          <span data-stat="generated">—</span>
+        </div>
+      </div>
+    </footer>
+
+    <dialog class="detail" data-detail>
+      <article class="detail-card">
+        <button class="detail-close" data-detail-close aria-label="Close">×</button>
+        <header class="detail-head">
+          <span class="status-pill" data-detail-category></span>
+          <h3 class="detail-title" data-detail-title></h3>
+          <p class="detail-author muted">
+            <span data-detail-author></span>
+            <span class="dot">·</span>
+            <span data-detail-version></span>
+          </p>
+        </header>
+        <p class="detail-description" data-detail-description></p>
+        <section class="detail-section">
+          <h4 class="eyebrow">Install</h4>
+          <div class="install-row">
+            <code data-detail-install></code>
+            <button class="btn btn-tertiary" data-copy-install>Copy</button>
+          </div>
+        </section>
+        <section class="detail-section" data-keyword-section hidden>
+          <h4 class="eyebrow">Keywords</h4>
+          <div class="keyword-row" data-detail-keywords></div>
+        </section>
+        <section class="detail-section detail-links" data-detail-links></section>
+      </article>
+    </dialog>
+
+    <script src="data/data.js"></script>
+    <script src="assets/app.js" defer></script>
+  </body>
+</html>

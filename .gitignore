@@ -21,6 +21,13 @@ Thumbs.db
 *.swo
 *~
 
+# Project-local Claude Code installs (per-repo skill/plugin sandbox)
+.claude/skills/
+
+# Playwright MCP cache + test screenshot artifacts at repo root
+.playwright-mcp/
+/skill-forge-*.png
+
 # Testing
 tmp/
 temp/

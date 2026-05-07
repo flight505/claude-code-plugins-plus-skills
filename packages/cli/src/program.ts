@@ -9,6 +9,7 @@ import { validateCommand } from './commands/validate.js';
 import { skillsCommand } from './commands/skills.js';
 import { searchCommand } from './commands/search.js';
 import { listTutorials, openTutorial } from './commands/tutorials.js';
+import { siteCommand } from './commands/site.js';
 import { linkPlugin, unlinkPlugin, listLinks } from './commands/link.js';
 import { getVersion } from './utils/version.js';
 import chalk from 'chalk';
@@ -192,6 +193,18 @@ export function buildProgram() {
       } else {
         listTutorials();
       }
+    });
+
+  program
+    .command('site')
+    .description('Build and open the local Skill Forge catalog site in your browser')
+    .option('--build-only', 'Build the site data without opening the browser')
+    .option('--no-build', 'Open the existing site without rebuilding')
+    .action((options: { buildOnly?: boolean; build?: boolean }) => {
+      siteCommand({
+        buildOnly: options.buildOnly,
+        noBuild: options.build === false,
+      });
     });
 
   program

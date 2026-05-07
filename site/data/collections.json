@@ -1,0 +1,145 @@
+{
+  "collections": [
+    {
+      "id": "devops-essentials",
+      "name": "DevOps Essentials",
+      "description": "Everything you need for CI/CD, infrastructure, and deployment automation",
+      "icon": "🚀",
+      "color": "#4F46E5",
+      "plugins": ["devops-automation-pack"],
+      "totalRequested": 5,
+      "featured": true
+    },
+    {
+      "id": "security-toolkit",
+      "name": "Security Toolkit",
+      "description": "Comprehensive security scanning, audit, and compliance tools",
+      "icon": "🔒",
+      "color": "#DC2626",
+      "plugins": ["secret-scanner"],
+      "totalRequested": 5,
+      "featured": true
+    },
+    {
+      "id": "legal-compliance",
+      "name": "Legal & Compliance",
+      "description": "Contract review, document generation, risk analysis, and regulatory compliance across GDPR, CCPA, SOC 2, and more",
+      "icon": "⚖️",
+      "color": "#6366F1",
+      "plugins": [
+        "gdpr-compliance-scanner",
+        "compliance-checker",
+        "pci-dss-validator",
+        "soc2-audit-helper",
+        "data-privacy-scanner"
+      ],
+      "totalRequested": 6,
+      "featured": true
+    },
+    {
+      "id": "jeremys-picks",
+      "name": "Jeremy's Picks",
+      "description": "Personal favorites and tools I actually use every day - built by the marketplace creator",
+      "icon": "star",
+      "color": "#F97316",
+      "plugins": ["skill-creator"],
+      "totalRequested": 1,
+      "featured": true
+    },
+    {
+      "id": "category-saas-packs",
+      "name": "SaaS Vendor Packs",
+      "description": "Vendor-specific skill bundles — Vercel, Stripe, Supabase, and more.",
+      "icon": "◆",
+      "color": "#5e6ad2",
+      "plugins": [
+        "supabase-pack",
+        "vercel-pack",
+        "clay-pack",
+        "cursor-pack",
+        "exa-pack",
+        "firecrawl-pack",
+        "klingai-pack",
+        "openrouter-pack"
+      ],
+      "totalRequested": 8,
+      "featured": false
+    },
+    {
+      "id": "category-ai-ml",
+      "name": "AI & ML",
+      "description": "Train, fine-tune, evaluate, and deploy ML models.",
+      "icon": "◇",
+      "color": "#7c5cff",
+      "plugins": [
+        "ai-ethics-validator",
+        "ai-sdk-agents",
+        "anomaly-detection-system",
+        "automl-pipeline-builder",
+        "classification-model-builder",
+        "clustering-algorithm-runner",
+        "computer-vision-processor",
+        "data-preprocessing-pipeline"
+      ],
+      "totalRequested": 8,
+      "featured": false
+    },
+    {
+      "id": "category-devops",
+      "name": "DevOps & Infrastructure",
+      "description": "CI/CD, IaC, observability, and platform engineering.",
+      "icon": "▲",
+      "color": "#27a644",
+      "plugins": [
+        "ansible-playbook-creator",
+        "auto-scaling-configurator",
+        "backup-strategy-implementor",
+        "ci-cd-pipeline-builder",
+        "cloud-cost-optimizer",
+        "compliance-checker",
+        "container-registry-manager",
+        "container-security-scanner"
+      ],
+      "totalRequested": 8,
+      "featured": false
+    },
+    {
+      "id": "category-security",
+      "name": "Security",
+      "description": "Audit, scan, and harden codebases.",
+      "icon": "◉",
+      "color": "#dc2626",
+      "plugins": [
+        "access-control-auditor",
+        "authentication-validator",
+        "compliance-report-generator",
+        "cors-policy-validator",
+        "csrf-protection-validator",
+        "data-privacy-scanner",
+        "dependency-checker",
+        "encryption-tool"
+      ],
+      "totalRequested": 8,
+      "featured": false
+    },
+    {
+      "id": "category-api",
+      "name": "API Development",
+      "description": "Design, build, document, and integrate APIs.",
+      "icon": "◐",
+      "color": "#0891b2",
+      "plugins": [
+        "api-authentication-builder",
+        "api-batch-processor",
+        "api-cache-manager",
+        "api-contract-generator",
+        "api-documentation-generator",
+        "api-error-handler",
+        "api-event-emitter",
+        "api-gateway-builder"
+      ],
+      "totalRequested": 8,
+      "featured": false
+    }
+  ]
+}

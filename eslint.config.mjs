@@ -14,6 +14,8 @@ export default [
       '.husky/**',
       '.claude/**',
       '.claude-plugin/marketplace.json',
+      // Browser assets for the local catalog site — runtime scripts, not source.
+      'site/**',
     ],
   },
   js.configs.recommended,
