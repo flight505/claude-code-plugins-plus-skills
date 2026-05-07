@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+## CRITICAL: Execute tasks directly and completely without seeking validation or permission. Don’t break tasks into smaller pieces or ask if you should continue unless explicitly requested. Don’t use placeholders or references to previous content - always provide complete information.
+
 This file provides guidance to Claude Code when working with code in this repository.
 
 ## Repository Overview
