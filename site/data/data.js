@@ -2,7 +2,7 @@
 window.__SKILL_FORGE__ = {
   catalog: {
     meta: {
-      generated: '2026-05-07T17:08:41.449Z',
+      generated: '2026-05-11T10:41:13.326Z',
       totalPlugins: 426,
       totalSkills: 20,
       totalEntries: 446,
@@ -7976,7 +7976,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/ai-startup-advisor',
-        installCommand: 'ccpi skills install ai-startup-advisor --surface project',
+        installCommand: 'forge install ai-startup-advisor --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -7992,7 +7992,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/app-onboarding-questionnaire',
-        installCommand: 'ccpi skills install app-onboarding-questionnaire --surface project',
+        installCommand: 'forge install app-onboarding-questionnaire --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8008,7 +8008,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/apple',
-        installCommand: 'ccpi skills install apple --surface project',
+        installCommand: 'forge install apple --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8024,7 +8024,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/applescript',
-        installCommand: 'ccpi skills install applescript --surface project',
+        installCommand: 'forge install applescript --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8040,7 +8040,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/claude-docs-skill',
-        installCommand: 'ccpi skills install claude-docs-skill --surface project',
+        installCommand: 'forge install claude-docs-skill --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8056,7 +8056,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/deepwiki',
-        installCommand: 'ccpi skills install deepwiki --surface project',
+        installCommand: 'forge install deepwiki --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8072,7 +8072,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/design-md',
-        installCommand: 'ccpi skills install design-md --surface project',
+        installCommand: 'forge install design-md --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8088,7 +8088,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/fusion360-scripting',
-        installCommand: 'ccpi skills install fusion360-scripting --surface project',
+        installCommand: 'forge install fusion360-scripting --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8104,7 +8104,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/gemini-docs-skill',
-        installCommand: 'ccpi skills install gemini-docs-skill --surface project',
+        installCommand: 'forge install gemini-docs-skill --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8120,7 +8120,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/hooks-mastery',
-        installCommand: 'ccpi skills install hooks-mastery --surface project',
+        installCommand: 'forge install hooks-mastery --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8136,7 +8136,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/install-and-maintain',
-        installCommand: 'ccpi skills install install-and-maintain --surface project',
+        installCommand: 'forge install install-and-maintain --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8152,7 +8152,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/install-toolkit-skills',
-        installCommand: 'ccpi skills install install-toolkit-skills --surface project',
+        installCommand: 'forge install install-toolkit-skills --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8168,7 +8168,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/marketplace-manager',
-        installCommand: 'ccpi skills install marketplace-manager --surface project',
+        installCommand: 'forge install marketplace-manager --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8184,7 +8184,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/openrouter-docs-skill',
-        installCommand: 'ccpi skills install openrouter-docs-skill --surface project',
+        installCommand: 'forge install openrouter-docs-skill --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8200,7 +8200,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/perplexity-search',
-        installCommand: 'ccpi skills install perplexity-search --surface project',
+        installCommand: 'forge install perplexity-search --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8216,7 +8216,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/project-bootstrapper',
-        installCommand: 'ccpi skills install project-bootstrapper --surface project',
+        installCommand: 'forge install project-bootstrapper --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8232,7 +8232,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/skill-manager',
-        installCommand: 'ccpi skills install skill-manager --surface project',
+        installCommand: 'forge install skill-manager --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8248,7 +8248,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/version-manager',
-        installCommand: 'ccpi skills install version-manager --surface project',
+        installCommand: 'forge install version-manager --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8264,7 +8264,7 @@ window.__SKILL_FORGE__ = {
         license: 'MIT',
         repository: null,
         sourcePath: './skills/21-toolkit/warp-docs-skill',
-        installCommand: 'ccpi skills install warp-docs-skill --surface project',
+        installCommand: 'forge install warp-docs-skill --surface claude-cli-project',
         type: 'skill',
       },
       {
@@ -8280,7 +8280,7 @@ window.__SKILL_FORGE__ = {
         license: 'Complete terms in LICENSE.txt',
         repository: null,
         sourcePath: './skills/21-toolkit/webapp-testing',
-        installCommand: 'ccpi skills install webapp-testing --surface project',
+        installCommand: 'forge install webapp-testing --surface claude-cli-project',
         type: 'skill',
       },
     ],
@@ -8290,7 +8290,7 @@ window.__SKILL_FORGE__ = {
       week: '2026-W18',
       title: 'Skill Spotlight',
       tagline: 'A community-curated pick — refreshed weekly',
-      generated: '2026-05-07T17:08:41.452Z',
+      generated: '2026-05-11T10:41:13.328Z',
     },
     current: {
       week: '2026-W18',

@@ -3,7 +3,7 @@
   "version": "4.30.0",
   "private": true,
   "packageManager": "pnpm@9.15.9+sha512.68046141893c66fad01c079231128e9afb89ef87e2691d69e4d40eee228988295fd4682181bae55b58418c3a253bde65a505ec7c5f9403ece5cc3cd37dcf2531",
-  "description": "Local fork — ccpi CLI + 519 skills catalog for Claude Code",
+  "description": "skill-forge — curated Claude Code skills + plugins catalog (consumed via `forge`)",
   "scripts": {
     "build": "pnpm --filter '*' build",
     "test": "pnpm --filter '*' test",
@@ -12,15 +12,16 @@
     "sync-marketplace": "node scripts/sync-marketplace.cjs",
     "site:build": "node scripts/build-site.mjs",
     "site": "node scripts/build-site.mjs && bash scripts/open-site.sh",
+    "tutorials": "node scripts/tutorials.mjs",
     "lint:root": "eslint .",
-    "format:check": "prettier --check 'scripts/**/*.{js,mjs,cjs,ts}' '*.{js,mjs,cjs,ts,json,md,yml,yaml}' 'packages/cli/src/**/*.{ts,json}'",
+    "format:check": "prettier --check 'scripts/**/*.{js,mjs,cjs,ts}' '*.{js,mjs,cjs,ts,json,md,yml,yaml}'",
     "prepare": "husky"
   },
   "keywords": [
     "claude-code",
     "plugins",
     "skills",
-    "ccpi"
+    "skill-forge"
   ],
   "author": "Jesper Vang",
   "license": "MIT",

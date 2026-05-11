@@ -35,6 +35,6 @@
     "commands"
   ],
   "scripts": {
-    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  ccpi install kubernetes-deployment-creator\\\\n  or /plugin install kubernetes-deployment-creator@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
+    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  forge install kubernetes-deployment-creator\\\\n  or /plugin install kubernetes-deployment-creator@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
   }
 }

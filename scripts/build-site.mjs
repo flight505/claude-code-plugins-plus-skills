@@ -98,7 +98,7 @@ function readToolkitSkills() {
       license: fm.license || 'MIT',
       repository: null,
       sourcePath: `./skills/21-toolkit/${entry}`,
-      installCommand: `ccpi skills install ${slug} --surface project`,
+      installCommand: `forge install ${slug} --surface claude-cli-project`,
       type: 'skill',
     });
   }

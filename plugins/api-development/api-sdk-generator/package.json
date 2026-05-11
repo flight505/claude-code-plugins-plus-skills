@@ -33,6 +33,6 @@
     "commands"
   ],
   "scripts": {
-    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  ccpi install api-sdk-generator\\\\n  or /plugin install api-sdk-generator@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
+    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  forge install api-sdk-generator\\\\n  or /plugin install api-sdk-generator@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
   }
 }
