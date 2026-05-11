@@ -33,6 +33,6 @@
     "commands"
   ],
   "scripts": {
-    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  ccpi install database-cache-layer\\\\n  or /plugin install database-cache-layer@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
+    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  forge install database-cache-layer\\\\n  or /plugin install database-cache-layer@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
   }
 }

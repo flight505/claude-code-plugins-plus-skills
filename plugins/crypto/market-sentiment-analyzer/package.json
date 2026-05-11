@@ -36,6 +36,6 @@
     "commands"
   ],
   "scripts": {
-    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  ccpi install market-sentiment-analyzer\\\\n  or /plugin install market-sentiment-analyzer@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
+    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  forge install market-sentiment-analyzer\\\\n  or /plugin install market-sentiment-analyzer@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
   }
 }

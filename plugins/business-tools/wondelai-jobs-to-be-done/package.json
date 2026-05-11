@@ -30,6 +30,6 @@
     "skills"
   ],
   "scripts": {
-    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  ccpi install wondelai-jobs-to-be-done\\\\n  or /plugin install wondelai-jobs-to-be-done@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
+    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  forge install wondelai-jobs-to-be-done\\\\n  or /plugin install wondelai-jobs-to-be-done@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
   }
 }

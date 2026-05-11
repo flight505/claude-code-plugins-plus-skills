@@ -1,4 +1,3 @@
 packages:
   - 'plugins/mcp/*'
   - 'plugins/saas-packs/*-pack'
-  - 'packages/cli'

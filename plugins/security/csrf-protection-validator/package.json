@@ -33,6 +33,6 @@
     "commands"
   ],
   "scripts": {
-    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  ccpi install csrf-protection-validator\\\\n  or /plugin install csrf-protection-validator@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
+    "postinstall": "node -e \"console.log(\\\"\\\\n→ This npm package is a tracking/proof artifact. Install the plugin via:\\\\n  forge install csrf-protection-validator\\\\n  or /plugin install csrf-protection-validator@claude-code-plugins-plus in Claude Code\\\\n\\\")\""
   }
 }

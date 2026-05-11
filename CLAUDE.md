@@ -6,7 +6,7 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 ## Repository Overview
 
-Personal fork of the Tons of Skills plugin catalog. **skill-forge** is the curated content repo — 517 skills + 426 plugins indexed by `.claude-plugin/marketplace.json`. The packaged HTML browser at `site/` and the `ccpi` CLI at `packages/cli/` are **maintainer tooling for this repo**.
+Personal fork of the Tons of Skills plugin catalog. **skill-forge** is the curated content repo — 517 skills + 426 plugins indexed by `.claude-plugin/marketplace.json`. The packaged HTML browser at `site/` and the pnpm scripts under `scripts/` are **maintainer tooling for this repo**.
 
 **Runtime:** Node `>=20.0.0`, pnpm `>=9.0.0` (pinned to `9.15.9`)
 
@@ -14,18 +14,10 @@ Personal fork of the Tons of Skills plugin catalog. **skill-forge** is the curat
 
 - `plugins/mcp/*` — MCP server plugins (TypeScript)
 - `plugins/saas-packs/*-pack` — SaaS skill packs
-- `packages/cli` — `ccpi` CLI (**local fork, not on npm**; symlinked: `~/.local/bin/ccpi → packages/cli/dist/index.js`)
 
-## Tooling split — read this first
+## How this repo is consumed
 
-There are **two CLIs** in your `~/.local/bin/`. Use the right one:
-
-| Tool                                                                                                                      | Audience                | Use when                                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **`forge`** ([flight505/forge](https://github.com/flight505/forge), source at `~/Projects/Dev_projects/Claude_SDK/forge`) | End users + agents      | You want to install, search, or manage skills/plugins in any project — Claude Code, Claude Desktop, Cursor, Gemini CLI, Antigravity |
-| **`ccpi`** (this repo, `packages/cli`)                                                                                    | skill-forge maintainers | You're editing this catalog, validating schemas, building the local site, or developing a plugin in `plugins/`                      |
-
-**End-user installs:**
+End users install skills and plugins from this catalog via **[`forge`](https://github.com/flight505/forge)** (Go binary at `~/.local/bin/forge`). `forge` registers `skill-forge` as a `marketplace-local` source by default, plus `flight505-plugins` and `anthropic-skills` as remotes (953 records total).
 
 ```bash
 forge                                          # opens TUI
@@ -33,34 +25,28 @@ forge install <name>                           # install to auto-detected surfac
 forge install <name> --surface claude-cli-project --method vendor
 forge sync                                     # restore project from .forge.json
 forge suggest "<task description>" --json     # ranked recommendations (agent-friendly)
-forge agent install --global                  # let Claude use forge
 ```
 
-forge already has skill-forge registered as a `marketplace-local` source plus `flight505-plugins` and `anthropic-skills` as remotes. 953 records (517 skills + 436 plugins) catalog-wide.
+There is no `ccpi` anymore — it was removed in favor of `forge` (which covers install/list/search/doctor) plus the pnpm scripts below (which cover the repo-local site/tutorials/validation tasks).
 
-**skill-forge maintainer commands (this repo only):**
+## Maintainer commands
 
 ```bash
-# Rebuild the ccpi CLI after editing packages/cli/src/
-cd packages/cli && pnpm build               # rebuild dist/ (symlink picks it up automatically)
-cd packages/cli && pnpm test                # run CLI tests
+# Local catalog HTML site
+pnpm site                                    # build site/data and open site/index.html
+pnpm site:build                              # build only
 
-# Local catalog HTML site (skill-forge specific)
-ccpi site                                   # builds site/data and opens site/index.html
-ccpi site --build-only                      # build without opening
+# Tutorials (notebooks under tutorials/)
+pnpm tutorials                               # list
+pnpm tutorials <number>                      # open one
 
-# Tutorials (notebooks live in this repo)
-ccpi tutorials                              # list
-ccpi tutorials <number>                     # open one
-
-# Plugin live-reload during dev (links into ~/.claude/plugins/cache/)
-ccpi link <plugin-name>                     # catalog lookup from git root
-ccpi link --source ./plugins/cat/name       # explicit path
-ccpi unlink <plugin-name>                   # remove symlink
-ccpi links                                  # list linked plugins
+# Plugin live-reload during dev (symlinks into ~/.claude/plugins/cache/)
+forge install <plugin> --method link         # link the plugin into Claude Code
+forge remove <plugin>                        # unlink
+forge links                                  # list active link installs
 # After link/unlink: /reload-plugins in Claude Code to activate
 
-# Validate skills schema (Python; deeper checks than forge validate)
+# Validate skills schema (Python; deeper checks than `forge validate`)
 python3 scripts/validate-skills-schema.py --verbose          # all files
 python3 scripts/validate-skills-schema.py --skills-only      # SKILL.md only
 python3 scripts/validate-skills-schema.py --marketplace --verbose  # full rubric
@@ -80,18 +66,6 @@ pnpm run sync-marketplace
 # Quick test (build + lint + validate)
 ./scripts/quick-test.sh
 ```
-
-**`ccpi` commands deprecated in favor of forge:**
-
-| Old                                       | New                                                                       |
-| ----------------------------------------- | ------------------------------------------------------------------------- |
-| `ccpi skills list` / `install` / `remove` | `forge list` / `install` / `remove`                                       |
-| `ccpi search`                             | `forge search` (or TUI)                                                   |
-| `ccpi install <plugin>`                   | `forge install <plugin> --type plugin`                                    |
-| `ccpi marketplace add/remove`             | `forge source add marketplace-remote <repo>` / `forge source remove <id>` |
-| `ccpi doctor`                             | `forge doctor`                                                            |
-
-These still exist in ccpi for backwards compat but new docs and agent flows should use forge.
 
 ## Catalog
 
@@ -206,7 +180,7 @@ capabilities: ['capability1', 'capability2']
 3. Add entry to `.claude-plugin/marketplace.extended.json`
 4. `pnpm run sync-marketplace`
 5. `python3 scripts/validate-skills-schema.py --verbose plugins/[category]/[name]/`
-6. `ccpi link <name>` → `/reload-plugins` in Claude Code → iterate → `ccpi unlink <name>` when done
+6. `forge install <name> --method link` → `/reload-plugins` in Claude Code → iterate → `forge remove <name>` when done
 
 ## Git Hooks
 
